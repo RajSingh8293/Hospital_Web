@@ -3,15 +3,11 @@ const app = express();
 import "dotenv/config";
 import connectDb from "./db/conn.js";
 
-const port = process.env.PORT || 3040;
+const port = process.env.PORT || 3060;
 
 connectDb();
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello World!" });
-});
-
-app.get("/about", (req, res) => {
   res.json([
     {
       color: "red",
@@ -42,6 +38,10 @@ app.get("/about", (req, res) => {
       value: "#000",
     },
   ]);
+});
+
+app.get("/about", (req, res) => {
+  res.json({ message: "Hello World!" });
 });
 
 app.listen(port, () => {
