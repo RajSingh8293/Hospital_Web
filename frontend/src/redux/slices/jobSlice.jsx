@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 
+import { backendApi } from "@/constant/Api";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -98,7 +99,7 @@ let axiosConfig = {
 export const fetchJobs = (city, category, searchKeyword = "") => async (dispatch) => {
     try {
         dispatch(requestForJobs());
-        let link = `${import.meta.env.VITE_REACT_APP_API_BASE_UR}/job/get?`;
+        let link = `${backendApi}/job/get?`;
 
         let queryParams = [];
         if (searchKeyword) {
@@ -127,7 +128,7 @@ export const fetchJobs = (city, category, searchKeyword = "") => async (dispatch
 export const fetchSingleJob = (id) => async (dispatch) => {
     try {
         dispatch(requestSingleJob());
-        const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_UR}/job/get/${id}`, {
+        const { data } = await axios.get(`${backendApi}/job/get/${id}`, {
             withCredentials: true
         }
         )
@@ -147,7 +148,7 @@ export const getMyAppliedJobs = () => {
     return async (dispatch) => {
         dispatch(requestMyAppliedJobs())
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_UR}/application/get-applied-myjobs`, axiosConfig);
+            const { data } = await axios.get(`${backendApi}/application/get-applied-myjobs`, axiosConfig);
             console.log("getMyAppliedJobs :", data);
 
             if (data.success) {

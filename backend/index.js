@@ -2,15 +2,13 @@ import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-const app = express();
-import "dotenv/config";
-import connectDb from "./db/conn.js";
 import userRouter from "./routes/user.routes.js";
+import connectDb from "./db/conn.js";
+import "dotenv/config";
 
+const app = express();
 // webjobportal
 const port = process.env.PORT || 3060;
-
-connectDb();
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -30,6 +28,12 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1", userRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+connectDb()
+  .then(() => {
+    app.listen(port, () => {
+      console.log("Server connected on port : ", port);
+    });
+  })
+  .catch((error) => {
+    console.log("Server Error : ", error);
+  });
