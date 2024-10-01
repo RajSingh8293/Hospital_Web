@@ -81,6 +81,7 @@ export const userSlice = createSlice({
     initialState: {
         loading: false,
         user: null,
+        token: null,
         isAuthenticated: false,
     },
     reducers: {
@@ -88,12 +89,14 @@ export const userSlice = createSlice({
             state.loading = action.payload;
         },
         setUser: (state, action) => {
-            state.user = action.payload;
+            state.user = action.payload.user;
             state.isAuthenticated = true;
+            state.token = action.payload.token;
         },
         setLogout: (state) => {
             state.user = null;
             state.isAuthenticated = false;
+            state.token = null
         },
     },
 });

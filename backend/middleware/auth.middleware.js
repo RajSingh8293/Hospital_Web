@@ -3,7 +3,8 @@ import User from "../models/user.model.js";
 
 export const isAuthenticated = async (req, res, next) => {
   try {
-    let { token } = req.cookies;
+    // let { token } = req.cookies;
+    let token = req.cookies.token || req.header("Authorization")?.split(" ")[1];
     console.log("token ", token);
     if (!token) {
       res.status(400).json({

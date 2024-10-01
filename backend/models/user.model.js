@@ -22,28 +22,11 @@ const userSchema = new mongoose.Schema(
     },
     location: {
       type: String,
-      required: true,
     },
     role: {
       type: String,
       required: true,
       enum: ["applicant", "recruiter"],
-    },
-    profileImage: {
-      public_id: {
-        type: String,
-      },
-      url: {
-        type: String,
-      },
-    },
-    resume: {
-      public_id: {
-        type: String,
-      },
-      url: {
-        type: String,
-      },
     },
   },
 

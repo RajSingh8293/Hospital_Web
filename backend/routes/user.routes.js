@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import {
   allUsers,
   changeCurrentPassword,
+  deleteAllUsers,
   deleteProfile,
   deleteUserAccount,
   getProfile,
@@ -25,7 +26,7 @@ router.get("/user/logout", logoutUser);
 // user
 router.get("/user/me", isAuthenticated, getProfile);
 router.put("/user/update/me", isAuthenticated, updateProfile);
-router.post("/user/change-paasword", isAuthenticated, changeCurrentPassword);
+router.put("/user/change-paasword", isAuthenticated, changeCurrentPassword);
 router.put(
   "/user/update/profile-image",
   upload.single("profileImage"),
@@ -33,9 +34,11 @@ router.put(
   updateProfileImage
 );
 router.delete("/user/delete/me", isAuthenticated, deleteProfile);
+router.get("/user/:id", isAuthenticated, getUserAccountById);
 
 // admin
 router.get("/user/all", allUsers);
+router.delete("/user/delete-all", deleteAllUsers);
 router.delete("/user/admin/delete/:id", isAuthenticated, deleteUserAccount);
 router.get("/user/admin/get/:id", isAuthenticated, getUserAccountById);
 
