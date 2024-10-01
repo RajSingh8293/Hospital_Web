@@ -17,7 +17,8 @@ process.on("uncaughtException", (err) => {
 });
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://hospital-web-frontend.vercel.app",
+  // origin: "http://localhost:5173",
   credentials: true,
 };
 // middleware
