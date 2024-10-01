@@ -7,6 +7,7 @@ export const sendResponse = (res, user, statusCode, message) => {
   const options = {
     httpOnly: true,
     secure: true,
+    sameSite: 'None',
   };
   const { password: pass, ...rest } = user._doc; // hide password
   return res
